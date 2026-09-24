@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Salamatak"
+description = "A Saudi reverse-recruitment platform where companies discover anonymized occupational health and safety professionals and send confidential offers, revealing identities only after mutual acceptance."
+version = "1.0.0"
+id = "artifacts/salamatak"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18198
+
+[services.development]
+run = "pnpm --filter @workspace/salamatak run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/salamatak", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/salamatak/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18198"
+BASE_PATH = "/"
