@@ -1,0 +1,56 @@
+Update the existing Salamatak app with the following fixes. Do not rebuild
+the app from scratch — edit the existing pages/components/logic. Keep all
+mock/local-data-only architecture (no real backend, no real auth) as before.
+
+FIX 1 — Profile completion gating for search:
+Only candidates whose profile is 100% complete should appear in company
+search results. If a candidate's profile is below 100%, they must NOT show
+up in any company search/filter results, even if they technically match the
+filters. Add this check wherever search results are generated.
+
+FIX 2 — CV upload is a required field:
+Add a "Upload CV" field to the candidate profile form, and make it required
+(the candidate cannot mark their profile as 100% complete, or submit their
+profile, without uploading a file here). Since there's no real backend,
+simulate the upload by accepting a file input and storing the filename/a
+placeholder reference in local state — no need to actually process or store
+the file content.
+
+FIX 3 — Restrict candidate access to only their own data:
+After a candidate registers/logs in, they should ONLY be able to see and
+interact with:
+   - Their own profile (view/edit)
+   - Their own received offers (accept/decline)
+They must NOT be able to see other candidates, company search tools, company
+dashboards, or any other user's data. Remove/hide any navigation, routes, or
+UI elements that would let a logged-in candidate reach anything outside
+their own profile and their own offers.
+
+FIX 4 — Company must complete BOTH email validation and plan selection
+before accessing dashboard features:
+A company account should only be able to use dashboard features (search,
+send offers, etc.) once BOTH of these are true:
+   1. They entered a valid business email (reject gmail.com, yahoo.com,
+      hotmail.com, outlook.com, live.com, icloud.com, aol.com, and similar
+      free providers, same as before)
+   2. They selected one of the 3 subscription packages (Basic / Pro /
+      Enterprise)
+If either condition isn't met, block access to the dashboard and show a
+clear message telling the company what's missing (enter a valid business
+email / select a plan). Once both are done, unlock dashboard features
+according to the selected plan (for MVP, all 3 plans can unlock the same
+features — just track which plan is selected for future use).
+
+FIX 5 — Require login for all protected areas:
+If a user (candidate or company) is not logged in, they must NOT be able to
+access:
+   - Any dashboard (candidate or company)
+   - Company search / candidate search results
+   - Any other user's profile or data
+Any attempt to reach these pages/routes while logged out should redirect to
+the login/landing page. Only the Landing Page and About/FAQ page should be
+publicly viewable without logging in.
+
+Apply all 5 fixes together and make sure existing working features (offer
+flow, blind identity reveal on match, EN/AR toggle) still work correctly
+after these changes.
