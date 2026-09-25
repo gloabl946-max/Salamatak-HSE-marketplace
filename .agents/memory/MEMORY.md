@@ -1,0 +1,1 @@
+- [Bilingual UI coverage](localization.md) — Salamatak keeps local mock data in English and applies reversible EN/AR localization at the rendered UI boundary.

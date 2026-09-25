@@ -128,6 +128,7 @@ a { color: inherit; text-decoration: none; }
 .hero-actions .btn-outline { border-color:hsl(42 20% 73% / .55); color:hsl(var(--primary-foreground)); }
 .hero-stamp { border:1px solid hsl(42 35% 83% / .25); padding:27px; background:hsl(215 52% 15% / .48); position:relative; }
 .hero-stamp:before { content:'PRIVATE BY DESIGN'; position:absolute; top:-10px; left:20px; padding:3px 8px; color:hsl(var(--primary)); background:hsl(var(--accent)); font:700 9px var(--app-font-mono); letter-spacing:.1em; }
+[dir="rtl"] .hero-stamp:before { content:'خاص بتصميمه'; left:auto; right:20px; }
 .stamp-line { display:flex; align-items:center; gap:15px; padding:19px 0; border-bottom:1px solid hsl(42 35% 83% / .17); }
 .stamp-line:last-child { border-bottom:0; padding-bottom:0; }
 .stamp-index { color:hsl(var(--accent)); font:700 12px var(--app-font-mono); }
